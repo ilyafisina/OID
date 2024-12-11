@@ -1,0 +1,244 @@
+@font-face {
+    font-family: 'Shlapak';
+    src: url('../Shlapak_Script.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../Lato/Lato-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+    font-family: 'LatoEB';
+    src: url('../Lato/Lato-ExtraBold.ttf') format('truetype'),
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.header_bron h2{
+    font-family: 'Shlapak';
+    font-size: 48px;
+    margin-left: 210px;
+}
+
+.header_bron h1{
+    font-family: 'LatoEB';
+    font-size: 58px;
+    margin-left: 210px;
+    margin-top: -20px;
+}
+
+.header_bron p{
+    font-family: 'Lato';
+    font-size: 13px;
+    margin-left: 210px;
+    margin-top: -50px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.bron_body{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    border-radius: 20px;
+    align-self: center;
+    margin-left: 250px;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+
+header {
+    padding: 80px 0;
+    margin-right: 216px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+.scheme {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+}
+.scheme img {
+    width: 100%;
+    height: auto;
+}
+.table {
+    position: absolute;
+    background-color: rgb(115, 0, 138, 0.5);
+    border: 2px solid #6A3988;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s
+}
+.table:hover {
+    transform: scale(1.1);
+
+}
+.table.active {
+    background-color: rgba(68, 7, 73, 0.8);
+    border-color: rgb(0, 0, 0);
+}
+.form {
+    margin-top: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+.stol, .name, .phone, .form textarea {
+    width: 480px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #6A3988;
+    border-radius: 5px;
+}
+.form select{
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #6A3988;
+    border-radius: 5px;
+    width: 225px;
+}
+
+.modal-content h1{
+    font-family: 'LatoEB';
+    font-size: 58px;
+}
+
+.date_form{
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #6A3988;
+    border-radius: 5px;
+    width: 225px;
+}
+.form button {
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #6A3988;
+    margin-bottom: 0;
+}
+.form button:hover {
+    background-color: rgb(99, 1, 102);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(99, 1, 102, 0.5);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: white;
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+}
+.logo {
+    background: url('../images/logo.png') no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: -35px;
+    margin-left: 216px;
+}
+
+footer {
+    background-color: white;
+    color: black;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .grid_footer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 колонок одинаковой ширины */
+    gap: 40px; /* Отступы между колонками */
+    padding: 20px;
+    margin-left: 190px;
+}
+
+footer .footer-section .logo1{
+    background: url('../images/logo.png') no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: -35px;
+}
+
+footer .footer-section {
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+footer ul li {
+    margin: 5px 0;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: gray;
+    text-align: left;
+    font-size: 18px;
+}
+
+footer .social-links a {
+    margin: -20px;
+}
+
+footer .app-links a {
+    margin: 10px;
+}

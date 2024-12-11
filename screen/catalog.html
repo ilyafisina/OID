@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары</title>
+    <link rel="stylesheet" href="../css/catalog.css">
+</head>
+<body>
+    <div>
+        <header>
+            <div>
+                <nav style="margin-left: 50%;">
+                    <ul>
+                        <li><a href="../screen/index.html">Главная</a></li>
+                        <li><a href="../screen/about.html">О компании</a></li>
+                        <li><a href="../screen/catalog.html">Меню</a></li>
+                        <li><a href="../screen/bron.html">Бронирование</a></li>
+                    </ul>
+                </nav>
+                <div class="logo"></div>
+            </div>
+        </header>
+    </div>
+    <section style="margin-left: 219px; margin-bottom: 80px;">
+        <a style="text-decoration: none;" href="./index.html">Главная/</a><a style="text-decoration: none;" href="./about.html">О кофейне/</a><a style="text-decoration: none;" href="./catalog.html">Меню зала/</a>
+    </section>
+   
+    <section style="height: 292px; background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.5)), url(../images/menu_pp.png) no-repeat; margin-left: 216px; width: 1488px; border-radius: 40px;">
+        <h1 style="color:white; padding-top: 40px; margin-left: 40px; font-size: 48px; font-family: 'Lato';">Собрали для вас самые полезные <br> ингредиенты в новом </h1>
+        <button onclick="alert('Страница недоступна')" style="justify-content: right; align-content: end; margin-right: 0px; margin-left: 1300px; border-color: #6A3988; background-color: white; border-radius: 20px; width: 150px; height: 40px; margin-top: 30px; font-size: 18px; font-family: LatoEB; color: #6A3988;">подробнее</button>
+        <h2 style="padding-top: 10px; margin-left: 40px; color: white; font-size: 48px; margin-top: -80px;">ПП МЕНЮ</h2>  
+    </section>
+    <section>
+        <div>
+            <h2 style="font-family: 'Shlapak'; font-size: 48px; margin-left: 216px; padding-top: 80px;">Готовим с душой</h2>
+            <h2 style="font-family: 'LatoEB'; font-size: 58px; margin-left: 216px; color: #6A3988; margin-top: -20px;">МЕНЮ</h2>
+        </div>
+    <div class="menu">
+        <div class="menu-grid">
+            <div class="category-grid" style="margin-left: 216px;">
+                <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 20px;">
+                <div class="filter" style="display: inline-block;">
+                    
+                    <div class="cat" style="margin-top: 20px;">
+                        <div>
+                            <input type="text" style="width: 320px; font-size: 14px;" id="search" placeholder="Поиск товаров..." oninput="filterProducts()">
+                        </div>
+                        <button style="vertical-align: middle; background-image: url(../images/icon_cat_1.png); background-repeat: no-repeat; background-size: 45px; background-position: left;background-position-x: 43.25px;" id="but" class="category-btn" data-category="all" onclick="filterProductsByCategory('all')">Все категории</button>
+                        <button style="vertical-align: middle; background-image: url(../images/icon_cat_1.png); background-repeat: no-repeat; background-size: 45px; background-position: left;background-position-x: 43.25px;" id="but" class="category-btn" data-category="combo" onclick="filterProductsByCategory('combo')">Комбо</button>
+                        <button style="vertical-align: middle; background-image: url(../images/icon_cat_3.png); background-repeat: no-repeat; background-size: 45px; background-position: left;background-position-x: 43.25px;" id="but" class="category-btn" data-category="cakes" onclick="filterProductsByCategory('cakes')">Торты</button>
+                        <button style="vertical-align: middle; background-image: url(../images/icon_cat_4.png); background-repeat: no-repeat; background-size: 45px; background-position: left;background-position-x: 43.25px;" id="but" class="category-btn" data-category="cookies" onclick="filterProductsByCategory('cookies')">Печенье</button>
+                        <button style="vertical-align: middle; background-image: url(../images/icon_cat_5.png); background-repeat: no-repeat; background-size: 45px; background-position: left;background-position-x: 43.25px;" id="but" class="category-btn" data-category="drinks" onclick="filterProductsByCategory('drinks')">Напитки</button>
+                    </div>
+
+                </div>
+                <!-- Кнопки для фильтрации категорий -->
+                <div style="margin-top: -20px;" id="products"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <div class="modal" id="product-modal">
+       
+        <div class="modal-content">
+            <div class="gallery-container">
+                <div class="thumbnails" id="thumbnails-container">
+                    <!-- Миниатюры добавляются динамически -->
+                </div>
+                <div class="main-image">
+                    <img src="" alt="Main Image" id="mainImage">
+                </div>
+            </div>
+            <div>
+                <button class="modal-btn" style="float: right;" onclick="closeModal()">&times;</button>
+                <div class="modal-header">
+                    <h1 style="font-size: 48px;" id="modal-title">Детали товара</h1>
+                </div>
+                <div class="accordion">
+                    
+                    <p style="text-align: justify; margin-right: 40px;" class="prigotovlenie" id="prigotovlenie">Способ приготовления</p>
+                        <button onclick="toggleAccordion('composition')">Состав <img style="float: right; vertical-align: middle; margin-top: 5px; margin-right: 10px;" src="../images/Strelka1.png" no-repeat></button>
+                    <div class="accordion-content" id="composition">
+                        <p>Состав товара будет указан здесь.</p>
+                    </div>
+                    <button onclick="toggleAccordion('calories')">Калории <img style="float: right; vertical-align: middle; margin-top: 5px; margin-right: 10px;" src="../images/Strelka1.png" no-repeat></button>
+                    <div class="accordion-content" id="calories">
+                        <p>Калории товара будут указаны здесь.</p>
+                    </div>
+                </div>
+                <div class="price" id="modal-price"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="grid_footer">
+            <div class="footer-section" style="width: 224px;">
+                <div style="display: flex; align-items: center; margin-top: 40px;">
+                    <div class="logo1"></div>
+                     <p style="color: blueviolet; font-size: 32px; font-weight: bold; margin-top: -1px;">Coffee</p><p style="color: black; font-size: 32px; font-weight: bold;margin-top: -1px;">Lur</p>   
+                </div>
+                <p style="text-align: left; font-size: 24px; color: gray; margin-top: -20px;">Пробуди свой вкус</p>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4>Интернет-магазин</h4>
+                <ul>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Правила продажи</a></li>
+                    <li><a href="#">Промокоды</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4>Разделы сайта</h4>
+                <ul>
+                    <li><a href="./index.html">Главная</a></li>
+                    <li><a href="./about.html">О компании</a></li>
+                    <li><a href="./catalog.html">Меню</a></li>
+                    <li><a href="../screen/bron.html">Бронирование</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 124px;">
+                <h4>О компании</h4>
+                <ul>
+                    <li><a href="#">Обратная связь</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4 style="text-align: center;">Мы в соц. сетях</h4>
+                <div class="social-links" style="display: flex; ">
+                    <a href="#"><img src="../images/vk.png" alt="VK"></a>
+                    <a href="#"><img src="../images/telega.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/viber.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="footer-section" style="width: 349px;">
+                <h4 style="text-align: center;">Наше приложение</h4>
+                <div class="app-links" style="display: flex;gap: 10px;">
+                    <a href="#"><img src="../images/app_store.png" alt="App Store"></a>
+                    <a href="#"><img src="../images/google_play.png" alt="Google Play"></a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Шоколадно-трюфельный",
+                category: "cakes",
+                description: "Погрузитесь в мир шоколадных наслаждений с этим тортом, который сочетает в себе насыщенный шоколадный крем и нежный медовый аромат.",
+                price: "249₽",
+                images: ["../images/goods/Торт/1_1.png", "../images/goods/Торт/1_2.jpg", "../images/goods/Торт/1_3.jpg", "../images/goods/Торт/1_4.jpg", "../images/goods/Торт/1_5.jpg"],
+                composition: "Мука, сахар, яйца, масло, мед, шоколад, какао-порошок, ваниль, разрыхлитель теста.",
+                calories: {'kkal':300,'ugl':'35 гр','zhir':'18 гр','belki':'4 гр'},
+                prigotovlenie: "Этот торт — воплощение шоколадной роскоши. Густой шоколадный крем, напоминающий по своей текстуре мусс, с нотами какао на темном бисквите, а сладкий мед придает каждому слою особую теплоту. Завершающим штрихом является украшение из тертого шоколада, которое делает торт еще более аппетитным. Идеален для праздников и особых случаев."
+            },
+            {
+                id: 2,
+                name: "Печенье с изюмом",
+                category: "cookies",
+                description: "Традиционное домашнее печенье с изюмом — простое, но невероятно вкусное.",
+                price: "99₽",
+                images: ["../images/goods/печенье_изюм_1.jpg", "../images/goods/печенье_изюм_2.jpg", "../images/goods/печенье_изюм_3.jpg"],
+                composition: "Мука, сахар, яйца, сливочное масло, изюм, разрыхлитель теста, ванильный сахар.",
+                calories: {'kkal':250,'ugl':'38 гр','zhir':'10 гр','belki':'3 гр'},
+                prigotovlenie: "Мягкое, ароматное печенье, в котором каждая крошка пропитана сладостью и сочностью изюма. Хрустящая корочка снаружи и мягкая текстура внутри делают это печенье отличным дополнением к чашечке горячего чая. Это классика домашней выпечки, которая приносит тепло и уют."
+            },
+            {
+                id: 3,
+                name: "Чай зелёный",
+                category: "drinks",
+                description: "Легкий и свежий зелёный чай — идеальный напиток для отдыха и расслабления.",
+                price: "79₽",
+                images: ["../images/goods/Напитки/чай_зелен_1.jpg", "../images/goods/Напитки/чай_зелен_2.jpg", "../images/goods/Напитки/чай_зелен_3.jpg", "../images/goods/Напитки/чай_зелен_4.jpg", "../images/goods/Напитки/чай_зелен_5.jpg"],
+                composition: "Зелёный чай (листья).",
+                calories: {'kkal':0,'ugl':'0 гр','zhir':'0 гр','belki':'0 гр'},
+                prigotovlenie: "Этот зелёный чай — настоящий эликсир бодрости и свежести. Он имеет легкий, но глубокий вкус, который раскрывается при правильной температуре заваривания. Добавьте лимон для дополнительного аромата и наслаждайтесь спокойным моментом."
+            }, {
+                id: 4,
+                name: "Малиновый чизкейк",
+                category: "cakes",
+                description: "Кремовый чизкейк с малиновым джемом и легким бисквитом, который тает во рту.",
+                price: "279₽",
+                images: ["../images/goods/Торт/малиновый_чизкейк_1.jpg", "../images/goods/Торт/малиновый_чизкейк_2.jpg", "../images/goods/Торт/малиновый_чизкейк_3.jpg", "../images/goods/Торт/малиновый_чизкейк_4.jpg", "../images/goods/Торт/малиновый_чизкейк_5.jpg"],
+                composition: "Сливочный сыр, сахар, яйца, печенье савоярди, малина, сливки, желатин.",
+                calories: {'kkal':350,'ugl':'28 гр','zhir':'25 гр','belki':'7 гр'},
+                prigotovlenie: "В этом чизкейке встречаются две любимые текстуры: нежный кремовый слой и мягкий бисквит. Сочный малиновый джем добавляет яркую кислинку, которая идеально балансирует сладость десерта. Этот чизкейк станет любимым угощением для всех любителей малиновых сладостей."
+            },
+            {
+                id: 5,
+                name: "Эспрессо классический",
+                category: "drinks",
+                description: "Классический эспрессо — насыщенный и крепкий, для тех, кто ценит настоящую силу кофе.",
+                price: "99₽",
+                images: ["../images/goods/Напитки/эспрессо_1.jpg", "../images/goods/Напитки/эспрессо_2.jpg", "../images/goods/Напитки/эспрессо_3.jpg", "../images/goods/Напитки/эспрессо_4.jpg"],
+                composition: "Кофейные зерна (эспрессо).",
+                calories: {'kkal':2,'ugl':'0 гр','zhir':'0 гр','belki':'0 гр'},
+                prigotovlenie: "Эспрессо — это истинное наслаждение для любителей крепкого кофе. Каждая капля напитка насыщена глубокой кофейной горечью и ароматом, который раскрывается под воздействием горячей воды. Он идеально бодрит и зарядит энергией на весь день."
+            },
+            {
+                id: 6,
+                name: "Капучино",
+                category: "drinks",
+                description: "Кофе с молочной пенкой, идеальный для любителей мягких и сливочных напитков.",
+                price: "149₽",
+                images: ["../images/goods/Напитки/капучино_1.jpg", "../images/goods/Напитки/капучино_2.jpg", "../images/goods/Напитки/капучино_3.jpg", "../images/goods/Напитки/капучино_4.jpg"],
+                composition: "Эспрессо, молоко.",
+                calories: {'kkal':90,'ugl':'10 гр','zhir':'4 гр','belki':'4 гр'},
+                prigotovlenie: "Этот капучино — настоящая гармония кофе и молока. В нем сочетаются крепкий эспрессо и мягкая молочная пенка, создавая легкий и вкусный напиток. Подается с небольшим количеством сахара и украшен тертым шоколадом или корицей."
+            },
+            {
+                id: 7,
+                name: "Круассан с шоколадом",
+                category: "cakes",
+                description: "Слоеное тесто, внутри — тягучий шоколад. Классическое угощение для любого времени дня.",
+                price: "119₽",
+                images: ["../images/goods/Торт/круассан_шок_1.jpg", "../images/goods/Торт/круассан_шок_2.jpg", "../images/goods/Торт/круассан_шок_3.jpg"],
+                composition: "Мука, сахар, масло, шоколад, дрожжи, молоко.",
+                calories: {'kkal':320,'ugl':'35 гр','zhir':'18 гр','belki':'5 гр'},
+                prigotovlenie: "Круассан с шоколадом — это легкость слоеного теста, снаружи хрустящий и внутри тягучий шоколад. Каждый кусочек тает во рту, оставляя яркое послевкусие. Это идеальный десерт или закуска для утреннего кофе или полдника."
+            },
+            {
+                id: 8,
+                name: "Латте с карамелью",
+                category: "drinks",
+                description: "Кофейный напиток с молочной пенкой и карамелью, создающий неповторимый вкус и аромат.",
+                price: "199₽",
+                images: ["../images/goods/Напитки/лате_карам_1.jpg", "../images/goods/Напитки/лате_карам_2.jpg", "../images/goods/Напитки/лате_карам_3.jpg"],
+                composition: "Эспрессо, молоко, карамельный сироп.",
+                calories: {'kkal':150,'ugl':'20 гр','zhir':'6 гр','belki':'5 гр'},
+                prigotovlenie: "Этот латте сочетает в себе нежную молочную пенку и сладкую карамель, которая идеально дополняет вкус кофе. Он подойдет тем, кто ценит мягкость в кофейных напитках и любит сладкие акценты."
+            },
+            {
+                id: 9,
+                name: "Мокко",
+                category: "drinks",
+                description: "Шоколадно-кофейный напиток с молоком — для настоящих сладкоежек.",
+                price: "189₽",
+                images: ["../images/goods/Напитки/мокко_1.jpg", "../images/goods/Напитки/мокко_2.jpg", "../images/goods/Напитки/мокко_3.jpg"],
+                composition: "Эспрессо, молоко, шоколадный сироп.",
+                calories: {'kkal':200,'ugl':'30 гр','zhir':'8 гр','belki':'6 гр'},
+                prigotovlenie: "Мокко — это идеальный напиток для любителей шоколада и кофе. Смешение горячего кофе и шоколадного сиропа с молоком делает его невероятно вкусным и насыщенным. Он обладает теплым, богатым вкусом, который утолит жажду и подарит приятные ощущения."
+            },
+            {
+                id: 10,
+                name: "Какао с маршмеллоу",
+                category: "drinks",
+                description: "Горячий шоколад с мягкими маршмеллоу — идеальный напиток для зимних вечеров.",
+                price: "159₽",
+                images: ["../images/goods/Напитки/какао_марш_1.jpg", "../images/goods/Напитки/какао_марш_2.jpg", "../images/goods/Напитки/какао_марш_3.jpg", "../images/goods/Напитки/какао_марш_4.jpg"],
+                composition: "Какао-порошок, молоко, сахар, маршмеллоу.",
+                calories: {'kkal':220,'ugl':'40 гр','zhir':'6 гр','belki':'6 гр'},
+                prigotovlenie: "Нежное какао с мягким молоком и сладкими маршмеллоу — этот напиток станет любимым зимним угощением. Согревающее и уютное, оно отлично подходит для уютных вечеров с друзьями или семьей."
+            },
+            {
+                id: 11,
+                name: "Тирамису",
+                category: "cakes",
+                description: "Итальянский десерт с кофе и сливочным кремом, идеально сбалансированный по вкусу.",
+                price: "299₽",
+                images: ["../images/goods/Торт/тирамису_1.jpg", "../images/goods/Торт/тирамису_2.jpg", "../images/goods/Торт/тирамису_3.jpg", "../images/goods/Торт/тирамису_4.jpg", "../images/goods/Торт/тирамису_5.jpg"],
+                composition: "Печенье савоярди, кофе, маскарпоне, яйца, сахар, какао.",
+                calories: {'kkal':330,'ugl':'40 гр','zhir':'16 гр','belki':'8 гр'},
+                prigotovlenie: "Тирамису — это классика итальянской кухни, которая сочетает в себе крепкий вкус кофе и нежную кремовую текстуру маскарпоне. Печенье савоярди, пропитанное кофе, идеально контрастирует с воздушным кремом, создавая незабываемое сочетание."
+            },
+            {
+                id: 12,
+                name: "Карамельный чизкейк",
+                category: "cakes",
+                description: "Нежный чизкейк с карамельной глазурью, который станет настоящим украшением стола.",
+                price: "299₽",
+                images: ["../images/goods/Торт/карамельный_чизкейк_1.jpg", "../images/goods/Торт/карамельный_чизкейк_2.jpg", "../images/goods/Торт/карамельный_чизкейк_3.jpg", "../images/goods/Торт/карамельный_чизкейк_4.jpg", "../images/goods/Торт/карамельный_чизкейк_5.jpg"],
+                composition: "Сливочный сыр, сахар, яйца, печенье, карамель, сливки.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Этот чизкейк сочетает в себе кремовую текстуру сливочного сыра и сладкую карамельную глазурь. Он отличается своей легкостью и изысканностью, подходя для любого торжества или уютного чаепития."
+            },
+            {
+                id: 13,
+                name: "Флет Уайт",
+                category: "drinks",
+                description: "Крепкий кофе с молоком, который идеально подходит для любителей кофейных напитков средней крепости.",
+                price: "199₽",
+                images: ["../images/goods/Напитки/флэт_1.jpg", "../images/goods/Напитки/флэт_2.jpg", "../images/goods/Напитки/флэт_3.jpg"],
+                composition: "Кофейные зерна, молоко.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Флет Уайт — это эспрессо с молоком, но с меньшим количеством пены, чем в латте. Этот напиток имеет насыщенный кофейный вкус, мягкость молока и создает гармоничный баланс для истинных ценителей кофе."
+            },
+            {
+                id: 14,
+                name: "Американо",
+                category: "drinks",
+                description: "Классический американо — крепкий, насыщенный и бодрящий.",
+                price: "129₽",
+                images: ["../images/goods/Напитки/американо_1.jpg", "../images/goods/Напитки/американо_2.jpg", "../images/goods/Напитки/американо_3.jpg", "../images/goods/Напитки/американо_4.jpg"],
+                composition: "Кофейные зерна, вода.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Американо — это эспрессо, разбавленный горячей водой, что делает его вкус более мягким, но при этом насыщенным и крепким. Отличный выбор для тех, кто ищет кофе без лишней сладости и молока."
+            },
+            {
+                id: 15,
+                name: "Раф-кофе с ванилью",
+                category: "drinks",
+                description: "Кофейный напиток с ванилью и сливками, невероятно нежный и ароматный.",
+                price: "199₽",
+                images: ["../images/goods/Напитки/раф_1.jpg", "../images/goods/Напитки/раф_2.jpg", "../images/goods/Напитки/раф_3.jpg"],
+                composition: "Кофейные зерна, сливки, ванильный сахар.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Этот раф-кофе сочетает в себе эспрессо с ванильным сахаром и сливками. Ваниль придает напитку особую сладость, а сливки делают его еще более мягким и ароматным. Идеально для любителей десертных кофе."
+            },
+            {
+                id: 16,
+                name: "Лимонный тарт",
+                category: "cakes",
+                description: "Песочный тарт с ярким лимонным кремом и легким безе, создающий освежающий вкус.",
+                price: "249₽",
+                images: ["../images/goods/Торт/лимон_1.jpg", "../images/goods/Торт/лимон_2.jpg", "../images/goods/Торт/лимон_3.jpg", "../images/goods/Торт/лимон_4.jpg", "../images/goods/Торт/лимон_5.jpg"],
+                composition: "Мука, сахар, яйца, лимон, масло.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Лимонный тарт — это сочетание хрустящего песочного теста, кислого лимонного крема и легкого безе. Этот десерт обладает удивительным балансом сладости и кислинки, который не оставит равнодушным ни одного ценителя свежих десертов."
+            },
+            {
+                id: 17,
+                name: "Кофейный милкшейк",
+                category: "drinks",
+                description: "Холодный молочный коктейль с кофе и мороженым — идеальное угощение для жаркого дня.",
+                price: "149₽",
+                images: ["../images/goods/Напитки/милкш_1.jpg", "../images/goods/Напитки/милкш_2.jpg", "../images/goods/Напитки/милкш_3.jpg", "../images/goods/Напитки/милкш_4.jpg", "../images/goods/Напитки/милкш_5.jpg"],
+                composition: "Кофейные зерна, молоко, сахар, мороженое.",
+                calories: {'kkal':350,'ugl':'35 гр','zhir':'22 гр','belki':'6 гр'},
+                prigotovlenie: "Этот милкшейк сочетает в себе насыщенный вкус эспрессо, молока и ванильного мороженого. Он получается невероятно кремовым и свежим, идеально подходящим для летних дней или как десерт после обеда."
+            }
+        ];
+
+        const productsContainer = document.getElementById("products");
+        const searchInput = document.getElementById("search");
+        let currentSlide = 0;
+        let categorySelect = "all";  // Начальная категория
+
+        function renderProducts(productsToRender) {
+            productsContainer.innerHTML = "";
+            const productSection = document.createElement('section');
+            productSection.className = 'popular';
+            productSection.style ='background: white no-repeat; background-size: cover;';
+            
+            const productElement = document.createElement('div');
+            productElement.className = 'container';
+
+            const productGrid = document.createElement('div');
+            productGrid.className = 'product-grid';
+            productsToRender.forEach(product => {
+                const productDiv = document.createElement("div");
+                productDiv.className = "product";
+
+                productDiv.innerHTML = `
+                    <img style="width:317px; height:263px; object-fit: cover; border-radius:20px" src="${product.images[1]}" alt="${product.name}">
+                    <h4>${product.name}</h4>
+                    <p>${product.description}</p>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-content: end;">
+                        <div class="price_kor">
+                            <p class="price">${product.price}</p>
+                        </div>
+                        <button onclick="showDetails(${product.id})">Подробнее</button>
+                    </div>
+                `;
+                productGrid.appendChild(productDiv);
+                productElement.appendChild(productGrid);
+                productSection.appendChild(productElement);
+            });
+            productsContainer.appendChild(productSection);
+        }
+
+        function filterProducts() {
+            const query = searchInput.value.toLowerCase();
+            const filtered = products.filter(product => 
+                product.name.toLowerCase().includes(query) &&
+                (categorySelect === "all" || product.category === categorySelect)
+            );
+            renderProducts(filtered);
+        }
+
+        function filterProductsByCategory(category) {
+            categorySelect = category;
+            updateActiveButton();  // Обновляем активную кнопку
+            filterProducts();
+        }
+
+        // Функция для обновления класса активной кнопки
+        function updateActiveButton() {
+            const buttons = document.querySelectorAll('#but, #search');
+            buttons.forEach(button => {
+                if (button.dataset.category === categorySelect) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+        function showDetails(productId) {
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                document.getElementById("modal-title").textContent = product.name;
+                document.getElementById("prigotovlenie").innerHTML = `<p>${product.prigotovlenie}</p>`;
+                document.getElementById("composition").innerHTML = `<p>${product.composition}</p>`;
+                document.getElementById("calories").innerHTML = `<p>${product.calories}</p>`;
+                document.getElementById("modal-price").textContent = product.price;
+                currentSlide = 0;
+                const mainImage = document.getElementById("mainImage");
+                mainImage.src = product.images[currentSlide];
+
+                const thumbnailsContainer = document.getElementById("thumbnails-container");
+                thumbnailsContainer.innerHTML = ""; // Очищаем предыдущие миниатюры
+                product.images.forEach((image, index) => {
+                    const thumbnail = document.createElement("img");
+                    thumbnail.src = image;
+                    thumbnail.className = "thumbnail";
+                    thumbnail.style.cursor = "pointer";
+                    thumbnail.style.margin = "5px";
+                    thumbnail.onclick = () => updateMainImage(index, product.images);
+                    thumbnailsContainer.appendChild(thumbnail);
+                });
+                const modal = document.getElementById("product-modal");
+                modal.style.display = "flex";
+            }
+        }
+
+        function updateMainImage(index, images) {
+        currentSlide = index;
+        const mainImage = document.getElementById("mainImage");
+        mainImage.src = images[currentSlide];
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("product-modal");
+        modal.style.display = "none";
+    }
+
+        function toggleAccordion(sectionId) {
+            const content = document.getElementById(sectionId);
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+        // Инициализация: рендерим все товары при загрузке
+        renderProducts(products);
+
+        // Стилизация кнопок активной категории
+        
+    </script>
+</body>
+</html>

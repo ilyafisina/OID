@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование</title>
+    <link href="../css/bron.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <div>
+            <nav style="margin-left: 50%;">
+                <ul>
+                    <li><a href="../screen/index.html">Главная</a></li>
+                    <li><a href="../screen/about.html">О компании</a></li>
+                    <li><a href="../screen/catalog.html">Меню</a></li>
+                    <li><a href="../screen/bron.html">Бронирование</a></li>
+                </ul>
+            </nav>
+            <div class="logo"></div>
+        </div>
+    </header>
+    <section class="header_bron">
+        <h2>Оставьте заявку</h2>
+        <h1>ЗАБРОНИРОВАТЬ</h1>
+        <p>Выберите нужный столик с количеством места на схеме ниже и заполните форму бронирования</p>
+    </section>
+    <section class="bron_body">
+        <div class="scheme">
+            <img src="../images/схема/схема кофейни.jpg" alt="Схема кофейни">
+            <!-- Пример расположения столиков -->
+            <div class="table" data-table="1 (на 6 мест)" style="top: 215px; left: 175px; width: 25px; height: 82px;"></div>
+            <div class="table" data-table="2 (на 2 места)" style="top: 271px; left: 257px; width: 25px; height: 27.3px;"></div>
+            <div class="table" data-table="3 (на 4 места)" style="top: 271px; left: 366px; width: 25px; height: 54.7px;"></div>
+            <div class="table" data-table="4 (на 4 места)" style="top: 271px; left: 442px; width: 25px; height: 54.7px;"></div>
+            <div class="table" data-table="5 (на 1 рабочее место)" style="top: 350px; left: 175px; width: 25px; height: 27.3px;"></div>
+            <div class="table" data-table="6 (на 1 рабочее место)" style="top: 350px; left: 212px; width: 25px; height: 27.3px;"></div>
+            <div class="table" data-table="7 (на 1 рабочее место)" style="top: 350px; left: 249px; width: 25px; height: 27.3px;"></div>
+            <div class="table" data-table="8 (на 1 рабочее место)" style="top: 350px; left: 286px; width: 25px; height: 27.3px;"></div>
+            <div class="table" data-table="9 (на 4 места)" style="top: 355px; left: 366px; width: 25px; height: 54.7px;"></div>
+            <div class="table" data-table="10 (на 4 места)" style="top: 355px; left: 442px; width: 25px; height: 54.7px;"></div>
+            <div class="table" data-table="11 (на 3 места - веранда)" style="top: 418px; left: 305px; width: 22px; height: 32.7px;"></div>
+            <div class="table" data-table="12 (на 3 места - веранда)" style="top: 418px; left: 370px; width: 22px; height: 32.7px;"></div>
+            <div class="table" data-table="13 (на 3 места - веранда)" style="top: 418px; left: 435px; width: 22px; height: 32.7px;"></div>
+            <div class="table" data-table="14 (отдельная комната)" style="top: 329px; left: 595px; height: 20px;"></div>
+        </div>
+        
+        <div class="form">
+            <input class="stol" type="text" id="selectedTable" placeholder="Выбранный столик" readonly>
+            <input class="name" type="text" id="name" placeholder="Ваше имя">
+            <input class="phone" type="tel" id="phone" placeholder="Ваш номер телефона">
+            <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 30px;">
+                <input class="date_form" type="date" id="date">
+                <select id="time">
+                    <option value="">Выберите время</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00" disabled>11:00 (недоступно)</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                </select>
+            </div>
+            <textarea id="comment" placeholder="Комментарий"></textarea>
+            <button id="bookButton">Забронировать</button>
+            <h6 style="height: 30px; width: 480px; border-radius: 20px; color: rgba(0, 0, 0, 0.5); background-color: #F1E9F6; padding: 10px; margin-top: 5px; text-align: justify;">Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и с правилами пользования</h6>
+        </div>
+    </section>    
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <button style="float: right; background-color: white; border-color: gray; border-radius: 50%; border-style: solid; border-width: 1px; width: 20px; height: 20px; cursor: pointer; text-align: center;" onclick="closeModal()">&times;</button>
+            <h1>ВЫ УСПЕШНО <br> ЗАБРОНИРОВАЛИ СТОЛ</h1>
+            <h3>Данные бронирования</h3>
+            <table>
+                <tr>
+                    <th>Столик</th>
+                    <td id="modalTable"></td>
+                </tr>
+                <tr>
+                    <th>Дата</th>
+                    <td id="modalDate"></td>
+                </tr>
+                <tr>
+                    <th>Время</th>
+                    <td id="modalTime"></td>
+                </tr>
+                <tr>
+                    <th>Имя</th>
+                    <td id="modalName"></td>
+                </tr>
+            </table>
+            <h2 style="font-size: 14px; ">Администратор свяжется с вами за час до выбранного времени</h2>
+            <button onclick="redirectToPage()" style="width: 600px; height: 40px; background-color: #6A3988; border-radius: 20px; color: white; cursor: pointer; font-size: 15px; margin-top: 40px;">Перейти в меню</button>
+        </div>
+    </div>
+        
+        <script>
+            const tables = document.querySelectorAll('.table');
+            const selectedTableInput = document.getElementById('selectedTable');
+            const bookButton = document.getElementById('bookButton');
+            const successModal = document.getElementById('successModal');
+            const modalMessage = document.getElementById('modalMessage');
+            function redirectToPage() {
+                    window.location.href = "../screen/catalog.html"; 
+                }
+            tables.forEach(table => {
+                table.addEventListener('click', () => {
+                    // Убираем активный класс со всех столиков
+                    tables.forEach(t => t.classList.remove('active'));
+        
+                    // Добавляем активный класс к выбранному столику
+                    table.classList.add('active');
+        
+                    const tableNumber = table.getAttribute('data-table');
+                    selectedTableInput.value = `Столик ${tableNumber}`;
+                });
+            });
+        
+            bookButton.addEventListener('click', () => {
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                const comment = document.getElementById('comment').value;
+                const selectedTable = selectedTableInput.value;
+        
+                if (!name || !phone || !date || !time || !selectedTable) {
+                    alert('Пожалуйста, заполните все обязательные поля.');
+                    return;
+                }
+        
+                // Заполняем таблицу в модальном окне
+                modalTable.textContent = selectedTable;
+                modalDate.textContent = date;
+                modalTime.textContent = time;
+                modalName.textContent = name;
+
+                successModal.style.display = 'flex';
+            });
+        
+            function closeModal() {
+                successModal.style.display = 'none';
+            }
+        </script>
+    
+    <footer>
+        <div class="container">
+            <div class="grid_footer">
+            <div class="footer-section" style="width: 224px;">
+                <div style="display: flex; align-items: center; margin-top: 40px;">
+                    <div class="logo1"></div>
+                     <p style="color: blueviolet; font-size: 32px; font-weight: bold; margin-top: -1px;">Coffee</p><p style="color: black; font-size: 32px; font-weight: bold;margin-top: -1px;">Lur</p>   
+                </div>
+                <p style="text-align: left; font-size: 24px; color: gray; margin-top: -20px;">Пробуди свой вкус</p>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4>Интернет-магазин</h4>
+                <ul>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Правила продажи</a></li>
+                    <li><a href="#">Промокоды</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4>Разделы сайта</h4>
+                <ul>
+                    <li><a href="./index.html">Главная</a></li>
+                    <li><a href="./about.html">О компании</a></li>
+                    <li><a href="./catalog.html">Меню</a></li>
+                    <li><a href="../screen/bron.html">Бронирование</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 124px;">
+                <h4>О компании</h4>
+                <ul>
+                    <li><a href="#">Обратная связь</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="width: 197px;">
+                <h4 style="text-align: center;">Мы в соц. сетях</h4>
+                <div class="social-links" style="display: flex; ">
+                    <a href="#"><img src="../images/vk.png" alt="VK"></a>
+                    <a href="#"><img src="../images/telega.png" alt="Instagram"></a>
+                    <a href="#"><img src="../images/viber.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="footer-section" style="width: 349px;">
+                <h4 style="text-align: center;">Наше приложение</h4>
+                <div class="app-links" style="display: flex;gap: 10px;">
+                    <a href="#"><img src="../images/app_store.png" alt="App Store"></a>
+                    <a href="#"><img src="../images/google_play.png" alt="Google Play"></a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+</body>
+</html>

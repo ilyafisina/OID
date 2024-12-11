@@ -1,0 +1,162 @@
+@font-face {
+    font-family: 'Shlapak';
+    src: url('../Shlapak_Script.otf') format('opentype'),
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../Lato/Lato-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+    font-family: 'LatoEB';
+    src: url('../Lato/Lato-ExtraBold.ttf') format('truetype'),
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.img1{
+    transition: transform 0.3s
+}
+
+.img1:hover{
+    transform: scale(1.05);
+}
+
+header {
+    padding: 80px 0;
+    margin-right: 216px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.logo {
+    background: url('../images/logo.png') no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: -35px;
+    margin-left: 216px;
+}
+
+.about_prev h1{
+    font-family: 'Shlapak';
+    font-size: 48px;
+    margin-left: 216px;
+    padding: 0;
+}
+
+.preimush {
+    background: url('../images/fon.png');
+}
+
+.preimush .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    grid-template-rows: repeat(2, 1fr); /* Две строки */
+    gap: 20px; /* Отступы между ячейками */
+    width: 1488px;
+    height: 560px;
+    padding: 10px;
+    padding-left: 216px;
+  }
+  
+.preimush .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    font-size: 1.2em;
+    border-radius: 40px;
+  }
+
+  .item1 {
+    background-color: #6A3988;
+  }
+  
+  .item2 {
+    background-color: white;
+  }
+  
+  .item3 {
+    background-color: white;
+  }
+  
+  .item4 {
+    background-color: #6A3988;
+  }
+
+footer {
+    background-color: white;
+    color: black;
+    padding: 40px 0;
+    text-align: center;
+    z-index: 10000;
+}
+
+footer .grid_footer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 колонок одинаковой ширины */
+    gap: 40px; /* Отступы между колонками */
+    padding: 20px;
+    margin-left: 190px;
+}
+
+footer .footer-section .logo1{
+    background: url('../images/logo.png') no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: -35px;
+}
+
+footer .footer-section {
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+footer ul li {
+    margin: 5px 0;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: gray;
+    text-align: left;
+    font-size: 18px;
+}
+
+footer .social-links a {
+    margin: -20px;
+}
+
+footer .app-links a {
+    margin: 10px;
+}
